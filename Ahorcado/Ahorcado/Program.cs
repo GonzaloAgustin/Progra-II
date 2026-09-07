@@ -56,20 +56,30 @@ namespace Ahorcado
 
                 char letra = PedirLetra();
 
-                if (letrasUsadas.Contains(letra)){
-                    Console.WriteLine("Ya usaste esa letra.");
-                }
-                else{
-                    letrasUsadas.Add(letra);
+                if (char.IsLetter(letra))
+                {
+                    if (letrasUsadas.Contains(letra))
+                    {
+                        Console.WriteLine("Ya usaste esa letra.");
+                    }
+                    else
+                    {
+                        letrasUsadas.Add(letra);
 
-                    if (palabraSecreta.Contains(letra)){
-                        Console.WriteLine("¡Letra correcta!");
-                        ActualizarPalabra(palabraSecreta,palabraOculta,letra);
+                        if (palabraSecreta.Contains(letra))
+                        {
+                            Console.WriteLine("¡Letra correcta!");
+                            ActualizarPalabra(palabraSecreta, palabraOculta, letra);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Letra incorrecta.");
+                            intentos--;
+                        }
                     }
-                    else{
-                        Console.WriteLine("Letra incorrecta.");
-                        intentos--;
-                    }
+                } else
+                {
+                    Console.WriteLine("Letra incorrecta.");
                 }
             }
 
