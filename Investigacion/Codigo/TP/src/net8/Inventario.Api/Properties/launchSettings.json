@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Inventario.Api": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5002",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
