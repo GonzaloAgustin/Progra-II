@@ -1,0 +1,9 @@
+TRABAJO PRACTICO DE INVESTIGACION - API REST, OPENAPI Y MICROSERVICIOS
+
+01 - TP de investigacion (documento principal para entregar)
+02 - Especificacion funcional y tecnica .NET 8
+03 - Especificacion funcional y tecnica .NET Framework 4.8
+04 - Comparacion tecnica (pendiente de implementar ambas versiones)
+05 - Repositorio de codigo (pendiente)
+
+Completar en la portada: institucion, materia, docente, comision, fecha y cuatro integrantes.
