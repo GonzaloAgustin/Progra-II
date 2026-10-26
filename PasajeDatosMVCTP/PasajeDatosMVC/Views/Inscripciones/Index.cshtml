@@ -1,0 +1,238 @@
+@model PasajeDatosMVC.Models.InscripcionViewModel
+
+@using PasajeDatosMVC.Extensions
+@using PasajeDatosMVC.Models
+
+@{
+    ViewData["Title"] = ViewBag.Titulo;
+
+    // Casteo explícito requerido por el TP.
+    var talleres =
+        ViewData["Talleres"] as List<string>;
+
+    // Recuperación del objeto almacenado en Session.
+    var ultimoProcesado =
+        Context.Session.Get<InscripcionViewModel>(
+            "UltimoProcesado"
+        );
+}
+
+<div class="p-4 bg-white rounded shadow-sm mb-4 border">
+
+    <h1 class="text-primary fw-bold">
+        @ViewBag.Titulo
+    </h1>
+
+    <p class="text-muted mb-0">
+        Departamento de Alumnos - UNLaM
+    </p>
+
+</div>
+
+
+<!-- TempData -->
+@if (TempData["MensajeResultado"] is string mensaje)
+{
+    <div class="alert alert-success">
+        <strong>Resultado:</strong>
+        @mensaje
+    </div>
+}
+
+
+<div class="row">
+
+    <!-- FORMULARIO -->
+
+    <div class="col-md-7">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header bg-primary text-white fw-bold">
+                Nueva inscripción
+            </div>
+
+            <div class="card-body">
+
+                <form action="/Inscripciones/Registrar"
+                      method="post">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre del alumno
+                        </label>
+
+                        <input type="text"
+                               name="NombreAlumno"
+                               class="form-control"
+                               value="@Model.NombreAlumno"
+                               required />
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Legajo
+                        </label>
+
+                        <input type="text"
+                               name="Legajo"
+                               class="form-control"
+                               value="@Model.Legajo"
+                               required />
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Taller
+                        </label>
+
+                        <select name="TallerSeleccionado"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Seleccione un taller
+                            </option>
+
+                            @if (talleres != null)
+                            {
+                                foreach (var taller in talleres)
+                                {
+                                    <option value="@taller">
+                                        @taller
+                                    </option>
+                                }
+                            }
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Fecha de inscripción
+                        </label>
+
+                        <input type="datetime-local"
+                               name="FechaInscripcion"
+                               class="form-control"
+                               value="@Model.FechaInscripcion.ToString("yyyy-MM-ddTHH:mm")"
+                               required />
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+
+                        Registrar inscripción
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMACIÓN -->
+
+    <div class="col-md-5">
+
+        <!-- ViewData -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header bg-info fw-bold">
+                Talleres disponibles - ViewData
+            </div>
+
+            <div class="card-body">
+
+                <p class="text-muted">
+                    Información recuperada utilizando
+                    casteo explícito:
+                </p>
+
+                @if (talleres != null)
+                {
+                    <ul class="list-group">
+
+                        @foreach (var taller in talleres)
+                        {
+                            <li class="list-group-item">
+                                @taller
+                            </li>
+                        }
+
+                    </ul>
+                }
+
+            </div>
+
+        </div>
+
+
+        <!-- SESSION -->
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-warning fw-bold">
+                Último alumno procesado - Session
+            </div>
+
+            <div class="card-body">
+
+                @if (ultimoProcesado != null)
+                {
+                    <p>
+                        <strong>Alumno:</strong>
+                        @ultimoProcesado.NombreAlumno
+                    </p>
+
+                    <p>
+                        <strong>Legajo:</strong>
+                        @ultimoProcesado.Legajo
+                    </p>
+
+                    <p>
+                        <strong>Taller:</strong>
+                        @ultimoProcesado.TallerSeleccionado
+                    </p>
+
+                    <p>
+                        <strong>Fecha:</strong>
+                        @ultimoProcesado.FechaInscripcion
+                        .ToString("dd/MM/yyyy HH:mm")
+                    </p>
+                }
+                else
+                {
+                    <div class="alert alert-secondary mb-0">
+
+                        Todavía no existe ningún
+                        estudiante registrado durante
+                        esta sesión.
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

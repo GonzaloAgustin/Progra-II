@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - Gestión de Inscripciones
+    </title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold"
+               href="/">
+
+                UNLaM - Programación Avanzada 2
+
+            </a>
+
+            <span class="badge bg-primary">
+                Licenciatura en Gestión de la Tecnología
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container mb-5">
+
+        @RenderBody()
+
+    </main>
+
+
+    <footer class="border-top bg-white py-3 text-center text-muted">
+
+        <small>
+
+            © 2026 -
+            TP Integrador:
+            Gestión de Estado en ASP.NET Core MVC
+
+        </small>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
